@@ -10,4 +10,6 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
     boolean existsByEquipamentoId(Long equipamentoId);
     List<Emprestimo> findByColaboradorId(Long colaboradorId);
     List<Emprestimo> findByDataDevolucaoIsNullAndDataPrevistaDevolucaoBefore(LocalDate data);
+    // Complemento exato da consulta acima: já devolvido OU prazo ainda não vencido.
+    List<Emprestimo> findByDataDevolucaoIsNotNullOrDataPrevistaDevolucaoGreaterThanEqual(LocalDate data);
 }

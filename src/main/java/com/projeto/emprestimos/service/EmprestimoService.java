@@ -20,8 +20,8 @@ public class EmprestimoService {
     private final ColaboradorService colaboradorService;
 
     public EmprestimoService(EmprestimoRepository emprestimoRepository,
-                             EquipamentoService equipamentoService,
-                             ColaboradorService colaboradorService) {
+                            EquipamentoService equipamentoService,
+                            ColaboradorService colaboradorService) {
         this.emprestimoRepository = emprestimoRepository;
         this.equipamentoService = equipamentoService;
         this.colaboradorService = colaboradorService;
@@ -29,10 +29,14 @@ public class EmprestimoService {
 
     @Transactional(readOnly = true)
     public List<Emprestimo> listar(Boolean atrasados) {
-        if (Boolean.TRUE.equals(atrasados)) {
-            return emprestimoRepository.findByDataDevolucaoIsNullAndDataPrevistaDevolucaoBefore(LocalDate.now());
+        // Sem parâmetro: histórico completo. true/false: filtra pela mesma regra de Emprestimo.isAtrasado().
+        if (atrasados == null) {
+            return emprestimoRepository.findAll();
         }
-        return emprestimoRepository.findAll();
+        LocalDate hoje = LocalDate.now();
+        return atrasados
+                ? emprestimoRepository.findByDataDevolucaoIsNullAndDataPrevistaDevolucaoBefore(hoje)
+                : emprestimoRepository.findByDataDevolucaoIsNotNullOrDataPrevistaDevolucaoGreaterThanEqual(hoje);
     }
 
     @Transactional(readOnly = true)
