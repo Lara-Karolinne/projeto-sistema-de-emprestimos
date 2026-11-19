@@ -699,16 +699,19 @@ O script produzirá o arquivo `relatorio_emprestimos.xlsx` estruturado em duas a
 
 ## 👥 11. Integrantes da equipe
 
-| Integrante | Responsabilidade | GitHub |
+| Integrante | Papel / Atuação | GitHub |
 | --- | --- | --- |
-| **Lucas** | Tech Lead / Arquitetura | [![GitHub](https://img.shields.io/badge/GitHub-Eluriomilmar-181717?logo=github)](https://github.com/Eluriomilmar) |
-| **Cleber** | Organização / Segurança / Python | [![GitHub](https://img.shields.io/badge/GitHub-bin--ribeiro-181717?logo=github)](https://github.com/bin-ribeiro) |
+| **Lucas** | Arquitetura / Desenvolvimento Back-end e Banco de Dados / Revisão e correção | [![GitHub](https://img.shields.io/badge/GitHub-Eluriomilmar-181717?logo=github)](https://github.com/Eluriomilmar) |
+| **Lara** | QA & Apoio em Desenvolvimento Full Stack  — Testes, revisão e correção de erros gerais, mensagens de erro da API/ Acessibilidade / Identidade visual do site / Apresentação / Documentação / Suporte na organização | [![GitHub](https://img.shields.io/badge/GitHub-Lara--Karolinne-181717?logo=github)](https://github.com/Lara-Karolinne) |
 | **Thiago** | Segurança JWT / ViaCEP | [![GitHub](https://img.shields.io/badge/GitHub-thiagorosabio-181717?logo=github)](https://github.com/thiagorosabio) |
-| **Lara** | QA | [![GitHub](https://img.shields.io/badge/GitHub-Lara--Karolinne-181717?logo=github)](https://github.com/Lara-Karolinne) |
-| **Filipe** | README / Apresentação | [![GitHub](https://img.shields.io/badge/GitHub-FilipeSantos34-181717?logo=github)](https://github.com/FilipeSantos34) |
+| **Filipe** | README / Apresentação / Identidade visual / Documentação | [![GitHub](https://img.shields.io/badge/GitHub-FilipeSantos34-181717?logo=github)](https://github.com/FilipeSantos34) |
+| **Cleber** | Segurança | Python [![GitHub](https://img.shields.io/badge/GitHub-bin--ribeiro-181717?logo=github)](https://github.com/bin-ribeiro) |
 
 ---
 
+> **Nota:** A divisão original seguiu alguns dos papéis propostos, mas, ao longo do projeto, devido a imprevistos de agenda, alguns integrantes assumiram demandas adicionais para garantir a entrega completa dentro do prazo :D.
+
+---
 ## 🎯 12. Objetivo do projeto
 
 Desenvolver uma solução completa e segura para o controle patrimonial e de empréstimos internos, aplicando na prática conceitos de desenvolvimento Back-end com Java e Spring Boot, segurança stateless com JWT, integração com APIs externas (ViaCEP), documentação OpenAPI, persistência relacional e análise de dados automatizada com Python.
