@@ -25,33 +25,33 @@
     </properties>
 
     <dependencies>
-        <!-- Lucas: camada web MVC para expor as rotas REST consumidas pelo front-end. -->
+        <!-- camada web MVC para expor as rotas REST consumidas pelo front-end. -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc</artifactId>
         </dependency>
-        <!-- Lucas: JPA cuida da persistência das entidades no banco H2. -->
+        <!-- JPA cuida da persistência das entidades no banco H2. -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        <!-- Lara: validação declarativa dos campos recebidos nas requisições. -->
+        <!-- validação declarativa dos campos recebidos nas requisições. -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
-        <!-- Cleber e Thiago: autenticação, autorização por perfil e filtro JWT. -->
+        <!-- autenticação, autorização por perfil e filtro JWT. -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        <!-- Filipe: documentação das rotas e interface Swagger UI. -->
+        <!-- documentação das rotas e interface Swagger UI. -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>${springdoc.version}</version>
         </dependency>
-        <!-- Cleber e Thiago: geração e validação dos tokens JWT. -->
+        <!-- geração e validação dos tokens JWT. -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
@@ -69,18 +69,18 @@
             <version>${jjwt.version}</version>
             <scope>runtime</scope>
         </dependency>
-        <!-- Lucas: banco local em arquivo, para os dados continuarem após reiniciar. -->
+        <!-- banco local em arquivo, para os dados continuarem após reiniciar. -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!-- Lucas: no Spring Boot 4 a console H2 é um módulo separado. -->
+        <!-- no Spring Boot 4 a console H2 é um módulo separado. -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-h2console</artifactId>
         </dependency>
-        <!-- Lara: testes automatizados com JUnit, Mockito e suporte do Spring Boot. -->
+        <!-- testes automatizados com JUnit, Mockito e suporte do Spring Boot. -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test-classic</artifactId>
