@@ -705,7 +705,7 @@ O script produzirá o arquivo `relatorio_emprestimos.xlsx` estruturado em duas a
 | **Lara** | QA & Apoio em Desenvolvimento Full Stack  — Testes, revisão e correção de erros gerais, mensagens de erro da API/ Acessibilidade / Identidade visual do site / Apresentação / Documentação / Suporte na organização | [![GitHub](https://img.shields.io/badge/GitHub-Lara--Karolinne-181717?logo=github)](https://github.com/Lara-Karolinne) |
 | **Thiago** | Segurança JWT / ViaCEP | [![GitHub](https://img.shields.io/badge/GitHub-thiagorosabio-181717?logo=github)](https://github.com/thiagorosabio) |
 | **Filipe** | README / Apresentação / Identidade visual / Documentação | [![GitHub](https://img.shields.io/badge/GitHub-FilipeSantos34-181717?logo=github)](https://github.com/FilipeSantos34) |
-| **Cleber** | Segurança | Python [![GitHub](https://img.shields.io/badge/GitHub-bin--ribeiro-181717?logo=github)](https://github.com/bin-ribeiro) |
+| **Cleber** | Segurança | Python | [![GitHub](https://img.shields.io/badge/GitHub-bin--ribeiro-181717?logo=github)](https://github.com/bin-ribeiro) |
 
 ---
 
