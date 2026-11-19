@@ -1,8 +1,9 @@
 /*
   Além das Barreiras — estilos do front-end.
-  Lucas (tech lead): organização em componentes e regras responsivas para facilitar a revisão e a integração no Spring Boot.
+  Lucas (tech lead): organização em componentes e regras para facilitar a revisão e a integração no Spring Boot.
   Lara (QA): foco visível, contraste, áreas clicáveis e adaptação a teclado/telas pequenas facilitam os testes de acessibilidade.
-  Filipe (documentação/apresentação): paleta roxo, lilás, branco e preto reforça a identidade visual definida para a Equipe 2.
+  interface: paleta roxo, lilás, branco e preto reforça a identidade visual definida para a Equipe 2.
+  Filipe (documentação/apresentação Power Point geral)
 */
 :root {
   --purple-950: #28143f;

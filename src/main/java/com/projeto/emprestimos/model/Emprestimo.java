@@ -30,7 +30,7 @@ public class Emprestimo {
 
     public Emprestimo() { }
 
-    /** Lucas: o atraso é calculado na consulta, não é armazenado como uma coluna no banco. */
+    /**o atraso é calculado na consulta, não é armazenado como uma coluna no banco. */
     @JsonProperty("atrasado")
     public boolean isAtrasado() {
         return dataDevolucao == null

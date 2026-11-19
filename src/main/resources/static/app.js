@@ -5,13 +5,13 @@
  * Lucas (tech lead): integração das telas com as rotas relativas do Spring Boot e organização do código para revisão.
  * Cleber e Thiago (segurança): fluxo de login JWT e envio do token no cabeçalho Authorization.
  * Thiago (ViaCEP): o formulário envia CEP e número; o endereço deve ser preenchido pelo serviço ViaCEP no backend.
- * Lara (QA): feedback acessível, mensagens de erro da API e ações fáceis de testar.
- * Filipe (documentação): textos, rótulos e identidade visual "Além das Barreiras" consistentes com a apresentação.
+ * Lara (QA): Organização do código para revisão de erros, testes, feedback acessível, mensagens de erro da API e ações fáceis de testar.
+ * Filipe (documentação): textos, rótulos "Além das Barreiras" consistentes com a apresentação Power Point geral)
  */
 
 'use strict';
 
-// Cleber e Thiago — guarda o token somente durante a sessão atual do navegador.
+// guarda o token somente durante a sessão atual do navegador.
 const TOKEN_KEY = 'alemDasBarreirasToken';
 const ROLE_KEY = 'alemDasBarreirasRole';
 const NAME_KEY = 'alemDasBarreirasName';
@@ -33,14 +33,14 @@ let viewAtual = 'dashboard';
 
 const elemento = (id) => document.getElementById(id);
 
-// Lara — transforma texto externo em texto seguro antes de inserir valores recebidos da API nas tabelas.
+// transforma texto externo em texto seguro antes de inserir valores recebidos da API nas tabelas.
 function escaparHtml(valor) {
   return String(valor ?? '').replace(/[&<>"']/g, (caractere) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   })[caractere]);
 }
 
-// Lara — mostra mensagens de sucesso ou erro em uma região aria-live para leitores de tela.
+// mostra mensagens de sucesso ou erro em uma região aria-live para leitores de tela.
 function mostrarMensagem(texto, tipo = 'success', destino = 'globalMessage') {
   const caixa = elemento(destino);
   if (!caixa) return;
@@ -53,7 +53,7 @@ function mostrarMensagem(texto, tipo = 'success', destino = 'globalMessage') {
   }, 6500);
 }
 
-// Cleber e Thiago — interpreta o perfil presente no JWT sem substituir a validação de autorização do servidor.
+// interpreta o perfil presente no JWT sem substituir a validação de autorização do servidor.
 function lerDadosToken(token) {
   try {
     let parte = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
@@ -70,7 +70,7 @@ function lerDadosToken(token) {
   }
 }
 
-// Cleber e Thiago — encerra a sessão quando a API responde 401 e devolve o usuário à tela de login.
+// encerra a sessão quando a API responde 401 e devolve o usuário à tela de login.
 function encerrarSessao(motivo = '') {
   sessionStorage.removeItem(TOKEN_KEY);
   sessionStorage.removeItem(ROLE_KEY);
@@ -81,7 +81,7 @@ function encerrarSessao(motivo = '') {
   if (motivo) mostrarMensagem(motivo, 'error', 'loginMessage');
 }
 
-// Lucas — concentra as chamadas HTTP, inclui o JWT e apresenta a mensagem "message" enviada pela API.
+// concentra as chamadas HTTP, inclui o JWT e apresenta a mensagem "message" enviada pela API.
 async function chamarApi(caminho, opcoes = {}) {
   const token = sessionStorage.getItem(TOKEN_KEY);
   const cabecalhos = { ...(opcoes.headers || {}) };
@@ -118,7 +118,7 @@ async function chamarApi(caminho, opcoes = {}) {
   return dados;
 }
 
-// Lucas — aceita a lista simples documentada no PDF e a estrutura paginada comum do Spring, se o backend usar esse formato.
+// aceita a lista simples documentada no PDF e a estrutura paginada comum do Spring, se o backend usar esse formato.
 function normalizarLista(dados) {
   if (Array.isArray(dados)) return dados;
   if (dados && Array.isArray(dados.content)) return dados.content;
@@ -126,7 +126,7 @@ function normalizarLista(dados) {
   return [];
 }
 
-// Lara — formata a data recebida da API para leitura em português, sem calcular prazos no navegador.
+// formata a data recebida da API para leitura em português, sem calcular prazos no navegador.
 function formatarData(data) {
   if (!data) return '—';
   const partes = String(data).slice(0, 10).split('-');
@@ -134,12 +134,12 @@ function formatarData(data) {
   return `${partes[2]}/${partes[1]}/${partes[0]}`;
 }
 
-// Filipe — traduz os nomes técnicos do enum em rótulos mais fáceis de entender na tela.
+// traduz os nomes técnicos do enum em rótulos mais fáceis de entender na tela.
 function nomeTipo(tipo) {
   return TIPOS_EQUIPAMENTO[tipo] || tipo || '—';
 }
 
-// Cleber e Thiago — realiza o login e inicia a sessão com o token JWT devolvido pela API.
+// realiza o login e inicia a sessão com o token JWT devolvido pela API.
 async function fazerLogin(evento) {
   evento.preventDefault();
   const botao = elemento('loginForm').querySelector('button[type="submit"]');
@@ -172,7 +172,7 @@ async function fazerLogin(evento) {
   }
 }
 
-// Lucas — troca a tela de login pelo painel após a autenticação.
+// troca a tela de login pelo painel após a autenticação.
 function abrirAplicacao() {
   elemento('loginScreen').classList.add('is-hidden');
   elemento('appScreen').classList.remove('is-hidden');
@@ -187,7 +187,7 @@ function abrirAplicacao() {
   carregarPainel();
 }
 
-// Lucas — troca entre as áreas do sistema e mantém o item atual identificado na navegação.
+// troca entre as áreas do sistema e mantém o item atual identificado na navegação.
 function mudarTela(nome) {
   viewAtual = nome;
   document.querySelectorAll('.view-section').forEach((secao) => secao.classList.add('is-hidden'));
@@ -209,7 +209,7 @@ function mudarTela(nome) {
   if (nome === 'atrasados') carregarAtrasados();
 }
 
-// Lucas — carrega os dados principais para atualizar os indicadores do painel.
+// carrega os dados principais para atualizar os indicadores do painel.
 async function carregarPainel() {
   try {
     const [listaEquipamentos, listaEmprestimos] = await Promise.all([
@@ -226,7 +226,7 @@ async function carregarPainel() {
   }
 }
 
-// Lucas — solicita a lista de equipamentos à API, aplicando nela o filtro de tipo escolhido.
+//  solicita a lista de equipamentos à API, aplicando nela o filtro de tipo escolhido.
 async function carregarEquipamentos() {
   const tipo = elemento('filterEquipmentType').value;
   const caminho = tipo ? `/equipamentos?tipo=${encodeURIComponent(tipo)}` : '/equipamentos';
@@ -239,7 +239,7 @@ async function carregarEquipamentos() {
   }
 }
 
-// Lara — apresenta disponibilidade e ações administrativas em uma tabela acessível.
+//  apresenta disponibilidade e ações administrativas em uma tabela acessível.
 function renderizarEquipamentos(lista) {
   const corpo = elemento('equipmentTableBody');
   elemento('equipmentCount').textContent = `${lista.length} ${lista.length === 1 ? 'item' : 'itens'}`;
@@ -262,7 +262,7 @@ function renderizarEquipamentos(lista) {
   }).join('');
 }
 
-// Lucas — envia somente patrimônio, nome e tipo; a API define o equipamento como disponível.
+//  envia somente patrimônio, nome e tipo; a API define o equipamento como disponível.
 async function cadastrarEquipamento(evento) {
   evento.preventDefault();
   const formulario = evento.currentTarget;
@@ -278,7 +278,7 @@ async function cadastrarEquipamento(evento) {
   }
 }
 
-// Lucas — abre o formulário de edição para os campos permitidos pela rota PUT do projeto.
+// abre o formulário de edição para os campos permitidos pela rota PUT do projeto.
 function abrirEdicaoEquipamento(id) {
   const equipamento = equipamentosAtuais.find((item) => String(item.id) === String(id));
   if (!equipamento) return;
@@ -289,7 +289,7 @@ function abrirEdicaoEquipamento(id) {
   elemento('editEquipmentName').focus();
 }
 
-// Lucas — envia a atualização do nome e tipo à API, sem alterar o patrimônio ou disponibilidade.
+// envia a atualização do nome e tipo à API, sem alterar o patrimônio ou disponibilidade.
 async function atualizarEquipamento(evento) {
   evento.preventDefault();
   const id = elemento('editEquipmentId').value;
@@ -305,7 +305,7 @@ async function atualizarEquipamento(evento) {
   }
 }
 
-// Thiago — envia somente nome, e-mail, CEP e número; o endereço é obtido no backend via ViaCEP.
+// envia somente nome, e-mail, CEP e número; o endereço é obtido no backend via ViaCEP.
 async function cadastrarColaborador(evento) {
   evento.preventDefault();
   const formulario = evento.currentTarget;
@@ -323,7 +323,7 @@ async function cadastrarColaborador(evento) {
   }
 }
 
-// Lucas — busca os colaboradores pela rota administrativa documentada.
+// busca os colaboradores pela rota administrativa documentada.
 async function carregarColaboradores() {
   try {
     const dados = await chamarApi('/colaboradores');
@@ -335,7 +335,7 @@ async function carregarColaboradores() {
   }
 }
 
-// Lara — mostra os dados de endereço devolvidos pela API em uma tabela de leitura.
+// mostra os dados de endereço devolvidos pela API em uma tabela de leitura.
 function renderizarColaboradores(lista) {
   const corpo = elemento('collaboratorTableBody');
   elemento('collaboratorCount').textContent = `${lista.length} ${lista.length === 1 ? 'pessoa' : 'pessoas'}`;
@@ -354,7 +354,7 @@ function renderizarColaboradores(lista) {
   }).join('');
 }
 
-// Lucas — atualiza a seleção de colaboradores usando os registros retornados pelo backend.
+// atualiza a seleção de colaboradores usando os registros retornados pelo backend.
 function preencherSelecaoColaboradores() {
   const seletor = elemento('loanCollaborator');
   seletor.innerHTML = '<option value="">Selecione um colaborador</option>' + colaboradoresAtuais.map((item) =>
@@ -362,7 +362,7 @@ function preencherSelecaoColaboradores() {
   ).join('');
 }
 
-// Lucas — pede à API somente equipamentos disponíveis para preencher a seleção do empréstimo.
+// pede à API somente equipamentos disponíveis para preencher a seleção do empréstimo.
 async function carregarEquipamentosDisponiveis() {
   try {
     const dados = await chamarApi('/equipamentos?disponivel=true');
@@ -375,7 +375,7 @@ async function carregarEquipamentosDisponiveis() {
   }
 }
 
-// Lucas — carrega empréstimos e dados necessários aos formulários administrativos.
+// carrega empréstimos e dados necessários aos formulários administrativos.
 async function carregarDadosEmprestimos() {
   try {
     const dados = await chamarApi('/emprestimos');
@@ -389,7 +389,7 @@ async function carregarDadosEmprestimos() {
   }
 }
 
-// Lara — renderiza o histórico e oferece devolução para empréstimos ainda sem data de devolução.
+// renderiza o histórico e oferece devolução para empréstimos ainda sem data de devolução.
 function renderizarEmprestimos(lista) {
   const corpo = elemento('loanTableBody');
   elemento('loanCount').textContent = `${lista.length} ${lista.length === 1 ? 'registro' : 'registros'}`;
@@ -420,7 +420,7 @@ function renderizarEmprestimos(lista) {
   }).join('');
 }
 
-// Lucas — envia os IDs escolhidos; a API valida disponibilidade e define as datas do empréstimo.
+// envia os IDs escolhidos; a API valida disponibilidade e define as datas do empréstimo.
 
 async function registrarEmprestimo(evento) {
   evento.preventDefault();
@@ -459,7 +459,7 @@ async function registrarEmprestimo(evento) {
 }
 
 
-// Lucas — registra a devolução na rota indicada no documento, sem alterar o estado no navegador.
+// registra a devolução na rota indicada no documento, sem alterar o estado no navegador.
 async function registrarDevolucao(id) {
   try {
     await chamarApi(`/emprestimos/${encodeURIComponent(id)}/devolucao`, { method: 'PUT' });
@@ -470,7 +470,7 @@ async function registrarDevolucao(id) {
   }
 }
 
-// Lara — consulta o filtro atrasados=true na API; a tela não calcula atraso por conta própria.
+// consulta o filtro atrasados=true na API; a tela não calcula atraso por conta própria.
 async function carregarAtrasados() {
   try {
     const dados = await chamarApi('/emprestimos?atrasados=true');
@@ -481,7 +481,7 @@ async function carregarAtrasados() {
   }
 }
 
-// Lara — exibe os empréstimos que o backend devolveu como atrasados.
+// exibe os empréstimos que o backend devolveu como atrasados.
 function renderizarAtrasados(lista) {
   const corpo = elemento('overdueTableBody');
   elemento('overdueCount').textContent = `${lista.length} ${lista.length === 1 ? 'atrasado' : 'atrasados'}`;
@@ -502,7 +502,7 @@ function renderizarAtrasados(lista) {
   }).join('');
 }
 
-// Lara — registra os eventos da interface em um único ponto para facilitar os testes e a manutenção.
+// registra os eventos da interface em um único ponto para facilitar os testes e a manutenção.
 function configurarEventos() {
   elemento('loginForm').addEventListener('submit', fazerLogin);
   elemento('logoutButton').addEventListener('click', () => encerrarSessao());
@@ -535,7 +535,7 @@ function configurarEventos() {
   });
 }
 
-// Lucas — inicia os eventos e restaura a sessão da aba quando a página é atualizada.
+// inicia os eventos e restaura a sessão da aba quando a página é atualizada.
 document.addEventListener('DOMContentLoaded', () => {
   configurarEventos();
   if (sessionStorage.getItem(TOKEN_KEY)) abrirAplicacao();

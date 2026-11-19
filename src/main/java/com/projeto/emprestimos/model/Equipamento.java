@@ -25,7 +25,7 @@ public class Equipamento {
     @Column(nullable = false, length = 30)
     private TipoEquipamento tipo;
 
-    // Lucas: o item começa disponível; só o EmprestimoService altera esse estado ao emprestar/devolver.
+    // o item começa disponível; só o EmprestimoService altera esse estado ao emprestar/devolver.
     @Column(nullable = false)
     private boolean disponivel = true;
 

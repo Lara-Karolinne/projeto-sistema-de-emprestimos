@@ -10,7 +10,7 @@
   <script src="/app.js" defer></script>
 </head>
 <body>
-  <!-- Filipe (documentação e apresentação): identidade do Squad 2 exibida na interface para apresentar o projeto com uma marca consistente. -->
+  <!-- identidade do Squad 2 exibida na interface para apresentar o projeto com uma marca consistente. -->
   <div id="loginScreen" class="login-screen">
     <section class="login-brand" aria-label="Apresentação do projeto">
       <div class="brand-lockup brand-lockup-large">
@@ -52,7 +52,7 @@
           </div>
           <button class="button button-primary button-full" type="submit">Entrar no sistema</button>
         </form>
-        <!-- Lara (QA): região aria-live anuncia erros e confirmações sem depender apenas de cor ou elementos visuais. -->
+        <!-- região aria-live anuncia erros e confirmações sem depender apenas de cor ou elementos visuais. -->
         <div id="loginMessage" class="message" role="status" aria-live="polite" aria-atomic="true"></div>
         <p class="login-footnote">Acesso protegido por autenticação.</p>
       </div>
@@ -120,7 +120,7 @@
         </div>
       </header>
 
-      <!-- Lara (QA): mensagens centralizadas e anunciadas por leitores de tela para feedback de todas as operações. -->
+      <!-- mensagens centralizadas e anunciadas por leitores de tela para feedback de todas as operações. -->
       <div id="globalMessage" class="message global-message" role="status" aria-live="polite" aria-atomic="true"></div>
 
       <div class="page-content">
@@ -337,7 +337,7 @@
     </main>
   </div>
 
-  <!-- Lucas (tech lead): modal simples para atualizar apenas nome e tipo, conforme o contrato da rota PUT /equipamentos/{id}. -->
+  <!-- modal simples para atualizar apenas nome e tipo, conforme o contrato da rota PUT /equipamentos/{id}. -->
   <dialog id="editEquipmentDialog" class="edit-dialog" aria-labelledby="editDialogTitle">
     <form id="editEquipmentForm" class="form-stack dialog-form">
       <div class="panel-heading"><div><p class="eyebrow">ATUALIZAÇÃO</p><h2 id="editDialogTitle">Editar equipamento</h2></div><button type="button" id="closeEditDialog" class="icon-button" aria-label="Fechar">×</button></div>

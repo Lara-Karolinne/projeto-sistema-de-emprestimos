@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.Date;
 
-/** Cleber e Thiago: assina e valida JWT; o segredo vem de variável de ambiente em produção. */
+/**Thiago e Cleber: assina e valida JWT; o segredo vem de variável de ambiente em produção. */
 @Service
 public class TokenService {
     private final SecretKey chave;
